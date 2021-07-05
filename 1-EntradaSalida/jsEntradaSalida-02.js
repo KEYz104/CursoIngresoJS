@@ -5,10 +5,10 @@ function mostrar()
 {
 	
 	let ingresardato = "Matias";
-	
+			
 	ingresardato = prompt("Ingrese su Nombre");
 
-	alert("Bienevenid@"+ " " + ingresardato);
+	alert("Bienevenid@" + " " + ingresardato);
 
 }
 
