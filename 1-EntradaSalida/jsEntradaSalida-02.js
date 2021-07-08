@@ -8,7 +8,7 @@ function mostrar()
 			
 	ingresardato = prompt("Ingrese su Nombre");
 
-	alert("Bienevenid@" + " " + ingresardato);
+	alert(ingresardato);
 
 }
 

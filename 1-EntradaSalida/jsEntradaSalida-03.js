@@ -9,7 +9,7 @@ function mostrar()
 	
 	alert(textoIngresado);
 
-	document.getElementById("txtIdNombre").value = "";
+	document.getElementById("txtIdNombre").value = " ";
 }
 
 
