@@ -1,7 +1,28 @@
-function mostrar()
-{
+function mostrar() {
+	let numero
+	let contadorDivisores = 0;
 
+	numero = parseInt(prompt("ingrese un numero: "));
+	while (isNaN(numero)) {
+		numero = parseInt(prompt("Error, Ingrese un numero"));
+	}
 
-	alert("ok");
+	for (let i= 1; i <= numero; i++)
+	{
+		if (numero % i == 0)
+		{
+			contadorDivisores++;
+			console.log(i);
+		}
+	}
+	console.log("Divisores encontrados " + contadorDivisores);
 
-}//FIN DE LA FUNCIÓN
+	if(contadorDivisores != 0)
+	{
+		alert("el " + numero + " no es primo");
+	}
+	else
+	{
+		alert ("el " + numero + " es primo");
+	}
+} //FIN DE LA FUNCIÓN
