@@ -47,20 +47,116 @@ function mostrar() {
     contadorJ = 0;
   let promedio, mayortipo;
 
+  //Inicio del Bucle FOR
   for (let i = 0; i < 2; i++) {
     tipo = prompt("Elija el tipo de Producto: barbijo, alcohol, jabon");
     while (tipo != "barbijo" && tipo != "jabon" && tipo != "alcohol") {
       tipo = prompt(
+        //Pido el Tipo de Producto
         "Por favor, escriba un tipo valido: barbijo, alcohol, jabon"
       ).toLowerCase(tipo);
     }
-    precio = prompt(parseInt("Ingrese un precio entre 100 y 300"));
-    while (precio < 100 || precio > 300) {
-      precio = parseInt(
+    console.log(tipo);
+    precio = parseInt(prompt("Ingrese un precio entre $100 y $300"));
+    while (!(precio >= 100 || precio <= 300)) {
+      precio = parseFloat(
         prompt(
-          "El numero ingresado no esta entre los valores, por favor ingrese entre: 100 y 300"
+          "El numero ingresado no esta entre los valores, por favor ingrese entre: $100 y $300"
         )
       );
     }
+    console.log(precio);
+    cantidad = parseInt(
+      //Pido la cantidad
+      prompt("Ingrese la cantidad el max es 1000: ")
+    );
+    while (isNaN(cantidad) || cantidad < 1 || cantidad > 1000) {
+      cantidad = parseInt(
+        prompt("Error, Por favor Ingrese una cantidad validad: ")
+      );
+    }
+    console.log(cantidad);
+    marca = prompt("Ingrese una Marca: "); //Pido la marca
+    while (marca.length < 2) {
+      marca = prompt(
+        "Error, marca demasiado corta, Ingrese una marca con mas caracteres: "
+      );
+    }
+    console.log(marca);
+    fabricante = prompt("Ingrese un Fabricante"); //Pido el fabricante
+    while (fabricante.length < 2 || fabricante.length > 10) {
+      fabricante = prompt(
+        "Error, fabricante demaciaso corto, Ingrese un fabricante con mas caracteres:  "
+      );
+    }
+    console.log(fabricante);
+  } // Fin de Bucle FOR
+  //Inicio Switch
+  switch (tipo) {
+    case "barbijo":
+      acumB += cantidad;
+      contadorB++;
+      console.log(acumB);
+      console.log(contadorB);
+      break;
+    case "jabon":
+      acumJ += cantidad;
+      contadorA++;
+      console.log(acumJ);
+      console.log(contadorJ);
+      break;
+    case "alcohol":
+      if (flagAlcohol == 1) {
+        precioAlBarato = precio;
+        cantAlBarato = cantidad;
+        fabAlBarato = fabricante;
+        flagAlcohol = 0;
+        console.log(precioAlBarato);
+        console.log(cantAlBarato);
+        console.log(fabAlBarato);
+      } else if (precio < precioAlBarato) {
+        precioAlBarato = precio;
+        cantAlBarato = cantidad;
+        fabAlBarato = fabricante;
+        console.log(precioAlBarato);
+        console.log(cantAlBarato);
+        console.log(fabAlBarato);
+      }
+      acumA += cantidad;
+      contadorA++;
+      break;
+  } // Fin Switch
+
+  if (acumA > acumB && acumA > acumJ) {
+    mayortipo = "Alcohol";
+    promedio = acumA / contadorA;
+  } else if (acumB >= acumA && acumB > acumJ) {
+    mayortipo = "Barbijo";
+    promedio = acumB / contadorB;
+  } else {
+    mayortipo = "Jabon";
+    promedio = acumJ / contadorJ;
   }
+
+  //Punto A
+  if (flagAlcohol == 0) {
+    document.write(
+      "El fabricante del alcohol mas barato es " +
+        fabAlBarato +
+        " con un precio de " +
+        precioAlBarato
+    );
+  } else {
+    document.write("No se compraron alcoholes");
+  }
+  // Punto B
+  document.write(
+    "<br/>" +
+      "El producto mas vendido es " +
+      mayortipo +
+      " y el promedio es " +
+      promedio
+  );
+  //Punto C
+  document.write("<br/>" + "La cantidad de Jabones es " + acumJ);
 }
